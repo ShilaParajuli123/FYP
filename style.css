@@ -1,0 +1,266 @@
+*
+{
+	margin:0;
+	padding:0;
+}
+
+
+
+.row
+{
+	max-width:1140px;
+	margin:0 auto;
+}
+body
+{
+	font-family:tahoma;
+}
+.hero
+{
+	position:absolute;
+	width:1140px;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+}
+header
+{
+	background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(images/straw.jpg);
+	height:80vh;
+	background-position:center;
+	background-size:cover;
+	background-attachment:fixed;
+
+}
+h1
+{
+	color:white;
+}
+.main-nav
+{
+
+	list-style:none;
+	float:right;
+	margin-top:60px;
+}
+.main-nav li
+{
+	display:inline-block;
+	margin-left:20px;
+}
+
+.main-nav li a
+{
+	color:white;
+	text-decoration:none;
+	font-size:95%;
+	font-weight:bold;
+
+}
+.main-nav li a:hover
+{
+	color:#e67e22;
+	border-bottom:2px solid #e67e22;
+	transition:all 0.5s ease-in;
+	padding:15px 0;
+}
+.logo img
+{
+	height:100px;
+	float:left;
+	margin-top:30px;
+	border-radius:50%;
+}
+
+
+.btn
+{
+	border:1px solid #e67e22;
+	padding:10px 30px;
+	color:#e67e22;
+	text-decoration:none;
+	border-radius:12px;
+	margin-right:15px;
+}
+.button-awesome
+{
+	margin-top:40px;
+}
+.btn-half
+{
+	background-color:#e67e22;
+	color:white;
+}
+.btn-full:hover
+{
+	background-color:#e67e22;
+	color:white;
+	transition:all 0.5s ease-in;
+}
+.copy
+{
+	width:70%;
+	margin-left:15%;
+	margin-bottom:20px;
+}
+h3:after
+{
+	width:100px;
+	height:2px;
+	background-color:#e67e22;
+	display:block;
+	content:"";
+	margin:0 auto;
+	margin-top: 30px;
+}
+.features h3
+{
+	margin-top:80px;
+	margin-bottom:30px;
+}
+.arranging
+{
+	text-align:justify;
+}
+
+.features i
+{
+	font-size:40px;
+	color:#e67e22;
+	margin-left:35%;
+}
+.features h4
+{
+	margin-left:40px;
+}
+.food-showcase
+{
+	list-style:none;
+	width:100%;
+}
+.food-showcase li
+{
+	display:block;
+	width:25%;
+	float:left;
+}
+.food-photo
+{
+	width:100%;
+	margin:0;
+	overflow:hidden;
+}
+.food-photo img
+{
+	width:100%;
+	height:250px;
+	transform:scale(1.15);
+	transition:all 0.5sec;
+}
+.food-photo img:hover
+{
+	transform:scale(1.05);
+}
+.food
+{
+  margin-top:60px;
+}
+.pic img
+{
+	width:40%;
+	margin-left:50%;
+	margin-top:50px;
+}
+.works-step
+{
+	margin-top:50px;
+}
+
+.works-step div
+{
+	border:1px solid #e67e22;
+	display:inline-block;
+	border-radius:50%;
+	width:50px;
+	height:50px;
+	text-align:center;
+	line-height:50px;
+}
+.works-step img
+{
+	height:40px;
+	margin-top:100px;
+	margin-right:20px;
+}
+.clearfix
+{
+	zoom:1;
+}
+.clearfix:after
+{
+	visibility:hidden;
+	content:".";
+	height:0;
+	display:block;
+	clear:both;
+}
+.mobile
+{
+	margin-top:100px;
+}
+.restaurants
+{
+	margin-top:100px;
+}
+.restaurants thumbnail img
+{
+	width:100%;
+	height:150px;
+	margin-top:50px;
+	padding: 20px;
+}
+.restaurants i
+{
+	color:#e67e22;
+}
+.footer
+{	
+	
+	height:auto;
+	text-decoration:none;
+	background-color:black;
+	
+}
+.footer a{
+	margin-top:50px;
+	margin-left:80px;
+	size:20px;
+	color:#e67e22;
+}
+.footer h6
+{
+	margin-left:80px;
+	margin-top:20px;
+	color:#e67e22;
+}
+.footer p
+{
+	margin-left:80px;
+	margin-top:10px;
+	color:#e67e22;
+}
+.about img
+{
+	width:50px;
+	height:240px;
+}
+.resto img{
+	width:160px;
+	border:0;
+
+}
+
+.thumbnail img{
+	height: 150px;
+	width: 100%;
+}
