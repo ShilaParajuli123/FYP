@@ -5,27 +5,27 @@ include 'header.php';
 ?>
 <html>
 <head>
-    <title>Resturant Users</title>
+    <title>Resturant List</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="../css/templatemo_style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="../css/table.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<form action="insert.php" method="post">
+<form action="insertresturant.php" method="post">
     <table>
         <tr>
-    <td>Name</td> <td><input type="text" name="student_name"></td>
+    <td>Name</td> <td><input type="text" name="rname"></td>
         </tr>
         <tr>
-            <td>Address</td> <td><input type="text" name="address"></td>
+            <td>Rating</td> <td><input type="text" name="rating"></td>
         </tr>
         
         <tr>
-            <td>Phone Number</td> <td><input type="text" name="phonenumber"></td>
+            <td>Location</td> <td><input type="text" name="location"></td>
         </tr>
         <tr>
-            <td>Email</td> <td><input type="text" name="email"></td>
+            <td>Contact Number</td> <td><input type="text" name="contactnumber"></td>
         </tr>
 
 
@@ -43,18 +43,18 @@ include 'header.php';
 if(isset($_POST['Add']))
 {
     // variables for input data
-    $name = $_POST['name'];
-    $address = $_POST['address'];
-    $phonenumber = $_POST['phonenumber'];
-    $email = $_POST['email'];
+    $name = $_POST['rname'];
+    $rating = $_POST['rating'];
+    $location = $_POST['location'];
+    $contactnumber = $_POST['contactnumber'];
 
 
 
-    $sql_query = "INSERT INTO resturantusers(name,address,phonenumber,email) VALUES('$name','$address','$phonenumber','$email')";
+    $sql_query = "INSERT INTO resturantusers(rname,rating,location,contactnumber) VALUES('$rname','$rating','$location','$contactnumber')";
     mysqli_query($conn,$sql_query)
     or die(mysql_error());
 
-        header("location:resturantusers.php");
+        header("location:resturantlist.php");
 
 
 
