@@ -1,5 +1,8 @@
 <?php
+session_start();
 include("header.php");
+include("connection.php");
+
 ?> 
 
 <script type="text/javascript"> 
@@ -91,31 +94,62 @@ if(form.lastname.value == "") {
 
 </script>
 <body>
+<?php
+if(isset($_POST['done']))
+{
+$firstname = $_POST['firstname'];
+$lastname = $_POST['lastname'];
+$address = $_POST['address'];
+$phonenumber = $_POST['phonenumber'];
+$email = $_POST['email'];
+$password = $_POST['pwd1'];
+$reenterpassword = $_POST['pwd2'];
+
+$insert = mysqli_query($conn,"INSERT INTO `customer`(`firstname`, `lastname`, `address`, `phonenumber`, `email`, `password`, `reenterpassword`) 
+  VALUES ('$firstname', '$lastname', '$address', '$phonenumber', '$email', '$password', '$reenterpassword')");
+if($insert)
+{
+  header('Location: thanku.php');
+}
+else{
+  echo "error";
+}
+}
+?>
+
 <div class="container">
 
-                           <h3 class="text-center" style="color:green;"><i>User Registration</i></h3><br/>
-                           <h4 style="color:orange; border-bottom: 3px solid #dedede;">Personal Info</h4>
+    <h3 class="text-center" style="color:grey;"><i>User Registration</i></h3><br/>
+    <h4 style="color:orange; border-bottom: 3px solid #dedede;">Personal Info</h4>
   
-<form name="form" action="thanku.php" onsubmit="return checkForm(this);" method="post">
+<form name="form" action="register.php" onsubmit="return checkForm(this);" method="post">
  <div class ="form-group col-md-5">
 
-<p>Firstname: <input type="text" name="firstname"></p><br/>
-<p>Lastname: <input type="text" name="lastname"></p><br/>
-<p>Address: <input type="text" name="address"></p><br/>
-<p>Phonenumber: <input type="number" name="phonenumber"></p><br/>
-<p>Email: <input type="email" name="email"></p><br/>
-<p>Password: <input type="password" name="pwd1"></p><br/>
-<p>Confirm Password: <input type="password" name="pwd2"></p>
-<p><input type="checkbox"> Remember me </p>
+Firstname <input class="form-control" type="text" name="firstname" placeholder="Enter your first name"/> <br/>
+
+Lastname <input class="form-control" type="text" name="lastname" placeholder="Enter your last name"/> <br/>
+
+Address <input class="form-control" type="text" name="address" placeholder="Enter your address"/> <br/>
+
+Phone number <input class="form-control" type="number" name="phonenumber" placeholder="Enter your phone number"/> <br/>
+
+Email <input class="form-control" type="email" name="email" placeholder="Enter your valid email"/> <br/>
+
+Password <input class="form-control" type="password" name="pwd1" placeholder="Enter your password"/> <br/>
+
+Reenter Password <input class="form-control" type="password" name="pwd2" placeholder="Reenter your password"/> <br/>
+
+
+
 <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
 <input class ="btn btn-default" type="submit" value="Reset"/>
-<a href="thanku.php"><input class ="btn btn-success" type="submit" value="Sign Up"/></a>
-
-
-
-
+<input class ="btn btn-success" type="submit"  name="done" value="Sign Up"/>
+</div>
 </form>
 </div>
+<?php 
+include("footer.php");
+?>
 </body>
 </html>

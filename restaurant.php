@@ -1,5 +1,7 @@
 <?php
+session_start();
 include("header.php");
+include('connection.php');
 ?> 
 
 <section class="resto">
@@ -8,24 +10,47 @@ include("header.php");
 
 </hr>
 
-          
-  
-  <!--<p style="font-size: 20px;">Total 11 restaurants found for your search</p>-->
-  
-    <div class = "col-sm-6 col-md-3">
+       <?php
+       $sql = "select * from `restaurant`";
+       $run = mysqli_query($conn, $sql);
+       while($row = mysqli_fetch_array($run)){
+        $nameR = $row['2'];
+        $add = $row[1];
+        $rid = $row[0];
+       $name = $row[5]=='';
+
+
+?>
+        <div class = "col-sm-6 col-md-3">
         <div class = "thumbnail">
-            <img src = "images/bota.jpg" alt = "Generic placeholder thumbnail">
+            <img src = "images/<?php echo $name;?>" alt = "Generic placeholder thumbnail">
         </div>
 
         <div class = "caption">
-            <a href="bota.php"> <h4>Bota momo</h4></a>
-            <p><i>Kamalpokhari, Kathmandu</i></p>
-            <p>Nepali, Newari</p>
+            <a href="<?php echo $nameR;?>.php"> <h4><?php echo $nameR; ?></h4></a>
+                 <form method="POST" action="">
+                                    <a class="btn-xs" value="1" href="rating.php?restaurant=<?php echo $rid;?>&value=1">1</a>
+                                    <a class="btn-xs" value="2" href="rating.php?restaurant=<?php echo $rid;?>&value=2">2</a>
+                                    <a class="btn-xs" value="3" href="rating.php?restaurant=<?php echo $rid;?>&value=3">3</a>
+                                    <a class="btn-xs" value="4" href="rating.php?restaurant=<?php echo $rid;?>&value=4">4</a>
+                                    <a class="btn-xs" value="5" href="rating.php?restaurant=<?php echo $rid;?>&value=5">5</a>
+                                </form>
+            <p><i><?php echo $add; ?></i></p>
+          
             
         </div>
     </div>
+      <?php } ?>
 
-    <div class = "col-sm-6 col-md-3">
+
+
+
+    
+  <!--<p style="font-size: 20px;">Total 11 restaurants found for your search</p>-->
+  
+    
+
+  <!--   <div class = "col-sm-6 col-md-3">
         <div class = "thumbnail">
             <img src = "images/sangam.jpg" alt = "Generic placeholder thumbnail">
         </div>
@@ -72,6 +97,7 @@ include("header.php");
 
         <a class = "caption">
             <a href="royalalina.php"> <h4>Royal Alina's Bakery Cafe</h4></a>
+
             <p><i>New Baneshwor, Kathmandu</i></p>
             <p>Chinese, Nepali, Continental and Indian</p>
             
@@ -176,7 +202,10 @@ include("header.php");
             <p>French</p>
             
         </div>
-    </div>
+    </div> -->
 </section>
+<?php 
+include("footer.php");
+?>
 </body>
 </html>

@@ -10,18 +10,18 @@ include('connection.php');
     <h5>Click 'Add' button to select items of your choice from the menu below. Once you're done adding items, click 'Continue' button.   </h5>  
 
     
-<div>
+  <div>
   <?php
-   $query="select * from item, price where item.item_id=price.item_id ";
+   $query="select * from item, price where item.item_id=price.item_id";
   $result= mysqli_query($conn, $query);
       echo "<table>";
   while($fitem=mysqli_fetch_assoc($result)){
-    echo "<form method='post' action='cart.php?item=".$fitem['item_id']."&price=bota_price'>";
+    echo "<form method='post' action='cart.php?item=".$fitem['item_id']."&price=bigb_price'>";
     echo "<tr>";
-  if($fitem['bota_price']!=0)
+  if($fitem['bigb_price']!=0)
   {
-    echo "<td>".$fitem['name']."</td> &nbsp;&nbsp;&nbsp;&nbsp; 
-          <td>".$fitem['bota_price']."</td> 
+    echo "<td>".$fitem['name']."</td> &nbsp;&nbsp;&nbsp;&nbsp;
+          <td>".$fitem['bigb_price']."</td> 
          &nbsp;&nbsp;&nbsp;&nbsp;
         <td><select name='sel5'>
     <option value='1'>1</option>
@@ -30,7 +30,7 @@ include('connection.php');
     <option value='4'>4</option>
     <option value='5'>5</option>
   </select></td> &nbsp;&nbsp;&nbsp;&nbsp;
-  <td><button type='submit' name='btn".$fitem['item_id']."' class='btn btn-warning btn-sm'>Add</button></td> ";
+  <td><button type='submit' name='btn".$fitem['item_id']."' class='btn btn-warning btn-sm'>Add</button></td>";
     echo "</tr><br>";
     echo "</form>";
   }
@@ -47,4 +47,3 @@ include("footer.php");
 ?>
 </body>
 </html>
-

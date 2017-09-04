@@ -1,60 +1,52 @@
 <?php
-$product_array = $db_handle->runQuery("SELECT * FROM tsble_product ORDER BY id ASC");
-if (!empty($product_array)) { 
-foreach($product_array as $key=>$value){
-?>
-<div class="product-item">
-	<form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>">
-	<div class="product-image"><img src="<?php echo $product_array[$key]["image"]; ?>"></div>
-	<div><strong><?php echo $product_array[$key]["name"]; ?></strong></div>
-	<div class="product-price"><?php echo "$".$product_array[$key]["price"]; ?></div>
-	<div><input type="text" name="quantity" value="1" size="2" /><input type="submit" value="Add to cart" class="btnAddAction" /></div>
-	</form>
-</div>
+session_start();
+include("header.php");
+require("connection.php");
+$username=$_SESSION['username'];
+$query="select * from customer where email='".$username."'";
+$result=mysqli_query($conn, $query);
+$customer_id=mysqli_fetch_assoc($result);
+$c_id=$customer_id['customer_id'];
+if(isset($_GET['item'])){
+  //echo "get";
+  $price=$_GET['price'];
+  $name = [];
+  $name = explode('_', $price);
+  $rest = $name[0].'menu';
+  $item_id=$_GET['item'];
+  if(isset($_POST['btn'.$item_id])){
+    //echo "btn clicked";
+    //echo "btn clicked";
+    $item_qty=$_POST['sel5'];
+    $query="select * from price where item_id='".$item_id."'";
+    $result=mysqli_query($conn, $query);
+    $item_price=mysqli_fetch_assoc($result);
+    $i_price=$item_price[$price];
+    $total_price=(Int)$i_price * (Int)$item_qty;
+    $query="insert into cart values ('', '".$item_id."', '".$c_id."', '".$item_qty."', '".$total_price."')";
+    $result=mysqli_query($conn, $query);
+  }
 }
-}
-?>
 
-<?php
-switch($option) { 
-case "add":
-	if(!empty($_POST["quantity"])) {
-		$productByCode = $db_handle->runQuery("SELECT * FROM tblproduct WHERE code='" . $_GET["code"] . "'");
-		$itemArray = array($productByCode[0]["code"]=>array('name'=>$productByCode[0]["name"], 'code'=>$productByCode[0]["code"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode[0]["price"]));
-		
-		if(!empty($_SESSION["cart_item"])) {
-			if(in_array($productByCode[0]["code"],array_keys($_SESSION["cart_item"]))) {
-				foreach($_SESSION["cart_item"] as $k => $v) {
-						if($productByCode[0]["code"] == $k) {
-							if(empty($_SESSION["cart_item"][$k]["quantity"])) {
-								$_SESSION["cart_item"][$k]["quantity"] = 0;
-							}
-							$_SESSION["cart_item"][$k]["quantity"] += $_POST["quantity"];
-						}
-				}
-			} else {
-				$_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
-			}
-		} else {
-			$_SESSION["cart_item"] = $itemArray;
-		}
-	}
-break;
+$query="select * from cart where customer_id='".$c_id."'";
+$result=mysqli_query($conn, $query);
+echo "<table class='table'>"; 
+echo "<tr><th>Name</th><th>Quantity</th><th>Total Price</th><th>Action</th></tr>";
+$total=0;
+while($rs=mysqli_fetch_assoc($result)){
+  $qry = "select name from item where item_id= ".$rs['item_id'];
+  // var_dump($qry);
+  $rslt  =  mysqli_query($conn,$qry);
+  $row=mysqli_fetch_assoc($rslt);
+  echo "<tr>";
+  echo "<td>".$row['name']."</td><td>".$rs['quantity']."</td>
+  <th>".$rs['total_price']."</th><td><a href='remove.php?id=".$rs['cart_id']."'>Remove</a>
+  </td>";
+  echo "</tr>";
+  $total += $rs['total_price'];
 }
-?>
+echo "<tr><td></td><td></td><td><b>Total : ".$total."</b></td><td><a href='restaurant.php' class='button'>Add More Items</a></td></tr>";
+echo "</table>";
 
-<?php
-switch($option) { 
-case "remove":
-	if(!empty($_SESSION["cart_item"])) {
-		foreach($_SESSION["cart_item"] as $k => $v) {
-			if($_GET["code"] == $k)	unset($_SESSION["cart_item"][$k]);				
-			if(empty($_SESSION["cart_item"])) unset($_SESSION["cart_item"]);
-		}
-	}
-break;
-case "empty":
-	unset($_SESSION["cart_item"]);
-break;
-}
+
 ?>

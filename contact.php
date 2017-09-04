@@ -1,7 +1,8 @@
 <?php
+session_start();
 include("header.php");
+include('connection.php');
 ?> 
-
 <section class="contact">
 <hr>
 <h3 class="text-center">CONTACT</h3>
@@ -15,11 +16,14 @@ Email:-<a href="#"> info@foodieworld.com</a><br>
 Website:- <a href="#">www.foodieworld.com</a><br>
 </div>
 </div>
-<br>
-<br>
 </section>
-</div>
-</div>
+
+<div class = "clearfix"></div>
+<div style="margin-top: 240px" class="footer">
+<?php 
+include("footer.php");
+?>
 </div>
 </body>
 </html>
+

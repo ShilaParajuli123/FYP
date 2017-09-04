@@ -4,7 +4,10 @@
 	padding:0;
 }
 
-
+.search input
+{
+	margin-left:200px;
+}
 
 .row
 {
@@ -26,7 +29,7 @@ body
 header
 {
 	background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(images/salad.jpg);
-	height:80vh;
+	height:100px;
 	background-position:center;
 	background-size:cover;
 	background-attachment:fixed;
